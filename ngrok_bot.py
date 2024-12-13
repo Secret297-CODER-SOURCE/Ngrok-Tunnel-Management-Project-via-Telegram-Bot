@@ -1,21 +1,7 @@
 # -*- coding: utf-8 -*-
-import os
-import subprocess
-import sys
-import threading
-import json
-import socket
-from telebot import TeleBot
-from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
-from pyngrok import ngrok, conf
-
-# Файл для сохранения конфигурации
-CONFIG_FILE = "config.json"
-
-
 # Проверка и установка зависимостей
 def install_dependencies():
-    required_packages = ["pyngrok", "pytelegrambotapi"]
+    required_packages = ["telebot","pyngrok", "pytelegrambotapi"]
     for package in required_packages:
         try:
             # Проверка, установлен ли пакет
@@ -24,6 +10,25 @@ def install_dependencies():
         except ImportError:
             print(f"{package} не найден. Устанавливаем...")
             subprocess.check_call([sys.executable, "-m", "pip", "install", package, "--break-system-packages"])
+
+
+while True:
+    try:
+        import os
+        import subprocess
+        import sys
+        import threading
+        import json
+        import socket
+        from telebot import TeleBot
+        from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
+        from pyngrok import ngrok, conf
+        break
+    except:
+        install_dependencies()
+
+# Файл для сохранения конфигурации
+CONFIG_FILE = "config.json"
 
 
 # Загрузка конфигурации
